@@ -10,7 +10,6 @@ server.configure(function(){
 	var oneDay = 86400000;		//cache static files
   	server.use('/model', express.static(__dirname + '/model'));
   	server.use(express.static(__dirname + '/public', { maxAge: oneDay }));
-  	sej
 });
 
 var demoData = [{ // dummy data to display
