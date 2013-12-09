@@ -4,7 +4,8 @@ var mustache 		= require('mustache');
 var config      	= require('./config');
 var log             = require('./log')(module);
 var ModelFactory    = require('./api/model').ModelFactory;
-
+var fs              = require('fs');
+var sys             = require('sys');
 //var server = express.createServer();
 // express.createServer()  is deprecated. 
 var server = express(); // better instead
@@ -17,6 +18,7 @@ server.configure(function(){
   	server.use(express.logger('dev')); // выводим все запросы со статусами в консоль
   	server.use(express.json()); // стандартный модуль, для парсинга JSON в запросах
   	server.use(express.favicon()); // отдаем стандартную фавиконку, можем здесь же свою задать
+    server.use(express.multipart());
 });
 
 
@@ -57,6 +59,27 @@ server.get('/app/:slug', function(req,res){
 	
 	res.send(html);
 });
+
+
+server.post('/api/upload', function(req,res){
+    console.log(req.files);
+    var newPath = __dirname + '/temp.jpg';
+    console.log(newPath);
+      fs.writeFile(newPath, req.files.image, function (err) {
+        console.log(err);
+        res.redirect("back");
+      });
+});
+/*server.post('/api/upload', function(req,res){
+    console.log(req.files);
+    fs.readFile(req.files.displayImage.path, function (err, data) {
+      // ...
+      var newPath = __dirname;
+      fs.writeFile(newPath, data, function (err) {
+        res.redirect("back");
+      });
+    });
+});*/
 
 server.get('/api/model', function(req, res) {
     return ModelFactory.find(function (err, articles) {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="prntx">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>MCUBE Solutions | CU3ER By Template World</title>
@@ -7,7 +7,12 @@
 <!--  STEP ONE: insert path to SWFObject JavaScript -->
 <script type="text/javascript" src="/js/swfobject/swfobject.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+<script src="/js/angular-file-upload/angular-file-upload-shim.min.js"></script> 
+<script src="/js/angular-file-upload/angular.min.js"></script>
+<script src="/js/angular-file-upload/angular-file-upload.min.js"></script> 
+<script type="text/javascript" src="/js/bootstrap/ui-bootstrap-custom-tpls-0.7.0.js"></script>
 <script type="text/javascript" src="/controlers/addmodel.js"></script>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -46,8 +51,9 @@
   <div id="addPan">
     <div>Model name : <input name="name" type="text" ng-model="model.name" class="txt" /></div>
     <div><span>Model description</span> <input name="description" type="text" ng-model="model.description" class="txt" /></div>
-    <div><span>Model title</span>        <input name="title" type="text" ng-model="model.title" class="txt" /></div>
-    <div><span>Model name</span>        <input name="submit" type="submit" class="btn" value="Create" /></div>
+    <div><span>Model title</span><input name="title" type="text" ng-model="model.title" class="txt" /></div>
+    <div><span>Add File</span><button class="btn" ng-click="open()">Open me!</button></div>
+    <div><span>Model name</span><input name="submit" type="submit" class="btn" value="Create" /></div>
   </div>  
 </form>
 </section>

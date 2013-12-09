@@ -77,6 +77,8 @@ ul#infoPan li p.descrip						{margin-top:13px; font-size:12px; line-height:16px;
 #addPan input.txt							{width:600px; height:42px; float:right; font-family:Arial, Helvetica, sans-serif; font-size:21px; color:#3b3b3b; border:#cbcbcb solid 1px; background:#ffffff}
 #addPan input.btn							{width:113px; height:42px; margin-top:18px; float:right; font-family:Arial, Helvetica, sans-serif; font-size:17px; color:#ffffff; font-weight:bold; text-align:center; cursor:pointer; border:0; background:url(../images/submitBtn.png) no-repeat}
 #addPan input.btn:active					{background-position:1px 1px}
+#addPan button.btn							{width:113px; height:42px; margin-top:18px; float:right; font-family:Arial, Helvetica, sans-serif; font-size:17px; color:#ffffff; font-weight:bold; text-align:center; cursor:pointer; border:0; background:url(../images/submitBtn.png) no-repeat}
+#addPan button.btn:active					{background-position:1px 1px}
 
 #blog										{width:506px; margin-top:24px; float:left}
 #blog ul									{width:100%; float:left}
