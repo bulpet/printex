@@ -5,13 +5,18 @@
 <title>MCUBE Solutions | CU3ER By Template World</title>
 <link href="/css/styles.css" rel="stylesheet" type="text/css" media="all" />
 <!--  STEP ONE: insert path to SWFObject JavaScript -->
-<script type="text/javascript" src="/js/swfobject/swfobject.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
-<script src="/js/angular-file-upload/angular-file-upload-shim.min.js"></script> 
-<script src="/js/angular-file-upload/angular.min.js"></script>
-<script src="/js/angular-file-upload/angular-file-upload.min.js"></script> 
+<script type="text/javascript" src="/js/swfobject/swfobject.js"></script>
+<script type="text/javascript" src="/js/angular-file-upload/angular-file-upload-shim.min.js"></script> 
+<script type="text/javascript" src="/js/angular-file-upload/angular-file-upload.min.js"></script> 
 <script type="text/javascript" src="/js/bootstrap/ui-bootstrap-custom-tpls-0.7.0.js"></script>
 <script type="text/javascript" src="/controlers/addmodel.js"></script>
+
+<script type="text/javascript" src="/model/jsc3d.js"></script>
+<script type="text/javascript" src="/model/jsc3d.console.js"></script>
+<script type="text/javascript" src="/js/modelviewer.js"></script>
+
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet" />
 </head>
 
@@ -45,7 +50,7 @@
 </header>
 
 <section  id="content" ng-controller="newModel">
-<form ng-submit="add();">
+<form !ng-submit="add();">
   
   <h2><span>Add </span>New Model</h2>
   <div id="addPan">

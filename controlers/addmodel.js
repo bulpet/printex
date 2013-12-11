@@ -4,6 +4,7 @@ angular.module('prntx', ['ui.bootstrap','angularFileUpload']);
 var newModel = function($scope, $modal, $http, $log){
     
     $scope.open = function () {
+        
         var modalInstance = $modal.open({
           templateUrl: 'atachfile.html',
           controller: ModalInstanceCtrl,
@@ -78,6 +79,14 @@ var MyCtrl = [ '$scope', '$upload', function($scope, $upload) {
       //.then(success, error, progress); 
     }
   };
+
+$scope.handle_file_select = function(e) {
+    e.stopPropagation()
+    e.preventDefault()
+    var file = e.target.files[0]
+    preview_stl(file)
+  };
+
 }];
 /*var app = angular.module('prntx', ['ui.bootstrap']);
 

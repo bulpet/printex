@@ -15,40 +15,13 @@ server.configure(function(){
 	var oneDay = 86400000;		//cache static files
   	server.use('/controlers', express.static(__dirname + '/controlers'));
   	server.use(express.static(__dirname + '/public', { maxAge: oneDay }));
+    server.use('/fs', express.static(__dirname + '/fs', { maxAge: oneDay }));
   	server.use(express.logger('dev')); // выводим все запросы со статусами в консоль
   	server.use(express.json()); // стандартный модуль, для парсинга JSON в запросах
   	server.use(express.favicon()); // отдаем стандартную фавиконку, можем здесь же свою задать
     server.use(express.multipart());
 });
 
-
-
-var demoData = [{ // dummy data to display
-"name":"Steve Balmer",
-"company": "Microsoft",
-"systems": [{
-"os":"Windows XP"
-},{
-"os":"Vista"
-},{
-"os":"Windows 7"
-},{
-"os":"Windows 8"
-}]
-},{
-"name":"Steve Jobs",
-"company": "Apple",
-"systems": [{
-"os":"OSX Lion"
-},{
-"os":"OSX Leopard"
-},{
-"os":"IOS"
-}]
-},{
-"name":"Mark Z.",
-"company": "Facebook"
-}];
 
 server.get('/app/:slug', function(req,res){
 	var slug = [req.params.slug][0];
@@ -62,24 +35,20 @@ server.get('/app/:slug', function(req,res){
 
 
 server.post('/api/upload', function(req,res){
-    console.log(req.files);
-    var newPath = __dirname + '/temp.jpg';
-    console.log(newPath);
-      fs.writeFile(newPath, req.files.image, function (err) {
-        console.log(err);
-        res.redirect("back");
-      });
+    //console.log(req.files);
+    var serverPath = __dirname + '/fs/' + req.files.file.name;
+
+    //console.log(newPath);
+    console.log(serverPath);
+    try{
+        fs.renameSync(req.files.file.path,serverPath);
+        console.log('file has uploaded !!!');
+    }
+    catch(e){
+        console.log(e);
+        res.send({error: 'Ah crap! Something bad happened'});
+    }
 });
-/*server.post('/api/upload', function(req,res){
-    console.log(req.files);
-    fs.readFile(req.files.displayImage.path, function (err, data) {
-      // ...
-      var newPath = __dirname;
-      fs.writeFile(newPath, data, function (err) {
-        res.redirect("back");
-      });
-    });
-});*/
 
 server.get('/api/model', function(req, res) {
     return ModelFactory.find(function (err, articles) {
@@ -134,5 +103,34 @@ server.post('/api/model', function(req, res) {
         }
     });
 });
+
+
+
+var demoData = [{ // dummy data to display
+"name":"Steve Balmer",
+"company": "Microsoft",
+"systems": [{
+"os":"Windows XP"
+},{
+"os":"Vista"
+},{
+"os":"Windows 7"
+},{
+"os":"Windows 8"
+}]
+},{
+"name":"Steve Jobs",
+"company": "Apple",
+"systems": [{
+"os":"OSX Lion"
+},{
+"os":"OSX Leopard"
+},{
+"os":"IOS"
+}]
+},{
+"name":"Mark Z.",
+"company": "Facebook"
+}];
 
 server.listen(process.env.PORT || 3000);
